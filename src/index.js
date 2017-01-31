@@ -16,7 +16,9 @@ ReactDOM.render(
     </Route>
     <Route path="/Comics/Search" component={SearchResults}>
     </Route>
-    <Route path="/Comics" component={ListAllComics}>
+    <Route path="/Comics/" component={ListAllComics}>
+    </Route>
+    <Route path="/Comics/:page" component={ListAllComics}>
     </Route>
     <Route path="/Comic/:id" component={ComicDetail}>
     </Route>

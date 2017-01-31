@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 
 class SearchComponent extends Component {
-  render() {
-
-// TODO - donn't send if empty
-// THIS IS HOW YOU REDIRECT - could also send state
-  const redirect = (query) => {
+  redirect(query) {
     browserHistory.push({
       pathname: '/Comics/Search',
       search: '?comic=' + query,
@@ -14,11 +10,17 @@ class SearchComponent extends Component {
     });
   }
 
+  render() {
+
+// TODO - donn't send if empty
+// THIS IS HOW YOU REDIRECT - could also send state
+  
+
   const handleChange = (e) => {
-    var query = this.refs.search.value.trim();
+    const query = this.refs.search.value.trim();
 
     if (e.key === 'Enter') {
-      redirect(query);
+      this.redirect(query);
     };
   }
 

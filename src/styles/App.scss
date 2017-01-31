@@ -48,6 +48,9 @@ body {
   flex-direction: column;
 }
 
+a { 
+  text-decoration: none;
+}
 // input[type=search] {
 //   -webkit-appearance: none;
 //   height: 60px;
@@ -61,37 +64,16 @@ body {
 
 
 //   }
-// } 
+// }
 
-.search-results-container {
-  flex: 1 1 auto;
-  background-color: $grey;
-  padding: 0 0px;  
-
-
-  header {
-    color: white;
-    margin-bottom: 10px;
-
-    @media screen and (max-width: $small) {
-      height: 100px;
-      
-      justify-content: flex-end;
-      display: flex;
-      flex-direction: column;
-    }
-
-    @media screen and (min-width: $medium) {
-    }
-
-  }
-
+// TODO break this out
   .search-results-component {
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     padding: 5px 20px 0 20px;
+    background-color: $grey;
 
 
     .search-result-card {
@@ -136,6 +118,60 @@ body {
       }
     }
   }
+
+// TODO: this is a hack because it repeats somewhere else.
+.search-results-component {
+  background-color: $grey;
+} 
+
+// Break this out
+
+.search-result-card {
+  background-color: white;
+  margin: 0 0 10px 0;
+}
+
+.search-results-container {
+  flex: 1 1 auto;
+  background-color: $grey;
+  padding: 0 0px;  
+
+
+  
+
+  
+}
+
+.breadcrumbs-container {
+  display: flex;
+  padding: 10px 20px;
+
+  a { 
+      color: $brown
+  }
+    
+  .next {
+    align-self: center;
+  }
+
+  .active {
+    background-color: $yellow;
+  }
+
+  .breadcrumb {
+    border: 3px solid $dark-grey;
+    padding: 10px;
+    margin: 0 20px 0 0;
+    cursor: pointer;
+
+    
+
+    &:hover {
+     background-color: $yellow;     
+    }
+    
+  }
+
 }
 
 // BREAK OUT into header component
@@ -147,6 +183,7 @@ header {
 
   @media screen and (max-width: $small) {
     height: 100px;
+    width: 100%;
     justify-content: flex-end;
     flex-direction: column;
   }
@@ -170,6 +207,13 @@ header {
     font-weight: 100;
     font-family: $raleway;
 
+    a {
+      color: $grey;
+      
+      &:visited {
+        color: $grey
+      }
+    }
     @media screen and (min-width: $medium) {
       font-size: 16px;
       margin: 0 10px 0 0;
@@ -326,7 +370,6 @@ header {
   justify-content: center;
   height: 100%;
 
-
   @media screen and (min-width: $medium) {
     justify-content: flex-start;
   }
@@ -466,6 +509,10 @@ header {
       .active {
         color: $blue;
         cursor: pointer;
+
+        a {
+          color: $blue;
+        }
       }
     }
   }

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import SearchComponent from '../components/SearchComponent';
 import ShowSinglePage from '../components/ShowSinglePage';
 import ShowAllPages from '../components/ShowAllPages';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
+import Masthead from '../components/Masthead';
+import Utilities from '../components/Utilities';
 
 // TODO: 
 // Add pages in the route
@@ -32,10 +34,15 @@ class ComicView extends Component {
       .then((response) => this.setState({included: response.included}))
   }
 
+  handleAllPages = (showAllPages) => {
+    this.setState({allPages: showAllPages});
+  } 
+
   render () {
     const current_page = this.props.params.page;
     const issue = this.props.params.issue;
     
+    // remove
     const issue_formatted = (issue) => {
       return issue.split("-").slice(1).join(" ");
     };
@@ -43,7 +50,6 @@ class ComicView extends Component {
     const issues = this.state.included.filter(function (el) {
       return el.type === "issues";
     });
-    console.log(issues);
     // const page_count = this.state.pages.length;
     // console.log(page_count);
     // TODO: bad naming of variables
@@ -52,7 +58,6 @@ class ComicView extends Component {
     // TODO: validate pages don't go out of bounds
     
 
-    // TODO: add all pages view
     const next_page = parseInt(current_page, 10) + 1;
     const prev_page = parseInt(current_page, 10) - 1;
     const nextPage = () => {
@@ -73,58 +78,22 @@ class ComicView extends Component {
         + prev_page
       });
     }
+
     const toggleAllPages = () => {
       this.setState({allPages: !this.state.allPages});
     }
 
     return (
-
       <div className="comic-viewer">
-        
         <header>
-          <div className="masthead">
-            read comics
-          </div>
+          <Masthead />
           <SearchComponent />
         </header>
 
-        {/* 
-          TODO: Break this into a component - utilities
-        */}
-        <div className="utilities-container">
-          <div className="utilities-inner-container">
-            <div className="utility">
-              View: 
-              <span className="active" onClick={toggleAllPages}>
-                {this.state.allPages ? " All Pages" : " One Page" }
-              </span>
-            </div>
-
-            {/*
-              TODO: break this out into a dropdown utility
-            */}
-            <div className="utility">
-              Issue:  
-              <span className="active" onClick={toggleAllPages}>
-                 {issue_formatted(issue)}
-              </span>
-            </div>
-            <div className="utility">
-              <Dropdown />
-              
-            </div>
-            <div className="utility">
-              <span className="active">
-                Comic List
-              </span>
-            </div>
-          </div>
-        </div>
-
+        <Utilities  issue={this.props.params.issue}
+                    allPages={this.state.allPages} 
+                    onSelectAllPages={this.handleAllPages} />
         
-        
-        
-
         <main>
           {this.state.allPages ?
             <ShowAllPages name={this.props.params.id}
@@ -159,40 +128,7 @@ class ComicView extends Component {
 }
 
 
-class Dropdown extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: 'coconut'};
 
-    this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  // handleSubmit(event) {
-  //   alert('Your favorite flavor is: ' + this.state.value);
-  //   event.preventDefault();
-  // }
-
-  render() {
-    return (
-      <form>
-        <label>
-          Issue:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
-          </select>
-        </label>
-      </form>
-    );
-  }
-}
 
 
 

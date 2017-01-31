@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 import SearchComponent from '../components/SearchComponent';
+import Masthead from '../components/Masthead';
 
 class SearchResults extends Component {
   constructor() {
@@ -16,22 +17,30 @@ class SearchResults extends Component {
     this.setState({
       searchTerm: searchTerm
     })
+    this.getData(searchTerm);
+  }
 
+  componentWillReceiveProps(nextProps) {
+    const searchTerm=nextProps.location.query.comic;
+    this.setState({
+      searchTerm: searchTerm  
+    });
+    this.getData(searchTerm);
+  }
+
+  getData(searchTerm) {
     fetch("http://localhost:4000/comics-api/comics/search/" + searchTerm)
       .then(response => response.json())
-      .then((response) => this.setState({items: response.data}))    
+      .then((response) => this.setState({items: response.data}))  
   }
 
   render() {
     const results = this.state.items;
-    
     return (
 
       <div className="search-results-container">
         <header>
-          <div className="masthead">
-            read some comics
-          </div>
+          <Masthead />
           <SearchComponent />
         </header>
         

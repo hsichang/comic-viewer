@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import SearchComponent from '../components/SearchComponent';
+import Masthead from "../components/Masthead";
 
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchTerm: ''
-    }
-  }
-
   render() {
     return (
       <div className="App">
-        <SearchComponent />
+        <header>
+          <Masthead />
+          <SearchComponent />
+        </header>
       </div>
     );
   }
