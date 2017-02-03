@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchComponent from '../components/SearchComponent';
 import ShowSinglePage from '../components/ShowSinglePage';
 import ShowAllPages from '../components/ShowAllPages';
-import { browserHistory, Link } from 'react-router';
+import { browserHistory } from 'react-router';
 import Masthead from '../components/Masthead';
 import Utilities from '../components/Utilities';
 
@@ -40,16 +40,7 @@ class ComicView extends Component {
 
   render () {
     const current_page = this.props.params.page;
-    const issue = this.props.params.issue;
-    
-    // remove
-    const issue_formatted = (issue) => {
-      return issue.split("-").slice(1).join(" ");
-    };
 
-    const issues = this.state.included.filter(function (el) {
-      return el.type === "issues";
-    });
     // const page_count = this.state.pages.length;
     // console.log(page_count);
     // TODO: bad naming of variables
@@ -77,10 +68,6 @@ class ComicView extends Component {
         + "/"
         + prev_page
       });
-    }
-
-    const toggleAllPages = () => {
-      this.setState({allPages: !this.state.allPages});
     }
 
     return (

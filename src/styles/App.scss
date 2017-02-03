@@ -150,8 +150,9 @@ a {
       color: $brown
   }
     
-  .next {
+  .prev-next {
     align-self: center;
+    margin: 0 20px 0 0;
   }
 
   .active {
@@ -163,8 +164,9 @@ a {
     padding: 10px;
     margin: 0 20px 0 0;
     cursor: pointer;
-
-    
+    width: 16px;
+    justify-content: center;
+    display: flex;
 
     &:hover {
      background-color: $yellow;     
@@ -179,11 +181,11 @@ header {
   color: white;
   background-color: $brown;
   display: flex;
-  padding: 0 20px;
+  padding: 0px 20px;
+  width: 100%;
 
   @media screen and (max-width: $small) {
     height: 100px;
-    width: 100%;
     justify-content: flex-end;
     flex-direction: column;
   }
@@ -333,6 +335,12 @@ header {
 
     }
   }
+}
+
+.sub-header-container {
+  width: 100%;
+  background-color: $grey;
+  padding: 10px 20px;
 }
 
 // TODO - break into search-container

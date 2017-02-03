@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import SearchComponent from '../components/SearchComponent';
-
+import Masthead from '../components/Masthead';
 
 class ComicDetail extends Component {
   constructor() {
@@ -58,9 +58,7 @@ class ComicDetail extends Component {
       <div className="comic-detail">
 
         <header>
-          <div className="masthead">
-            read comics
-          </div>
+          <Masthead />
           <SearchComponent />
         </header>
         <main>

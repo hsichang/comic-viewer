@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchComponent from '../components/SearchComponent';
 import Masthead from "../components/Masthead";
+import Subheader from '../components/Subheader';
 
 
 class App extends Component {
@@ -11,6 +12,7 @@ class App extends Component {
           <Masthead />
           <SearchComponent />
         </header>
+        <Subheader />
       </div>
     );
   }

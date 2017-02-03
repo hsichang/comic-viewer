@@ -29,6 +29,7 @@ class SearchComponent extends Component {
       <input ref="search" 
              type="search" 
              placeholder="Search Comics"
+
              onKeyDown={handleChange} />
     </div>)
   }

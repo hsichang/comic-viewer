@@ -36,11 +36,13 @@ class Utilities extends Component {
             </span>
           </div>
           <div className="utility">
+            {/*
             <Dropdown />           
+            */}
           </div>
           <div className="utility">
             <span className="active">
-              <Link to="/Comics/">Comic List</Link>
+              <Link to="/Comics/1">Comic List</Link>
             </span>
           </div>
         </div>
@@ -49,6 +51,7 @@ class Utilities extends Component {
   }
 }
 
+{/* 
 class Dropdown extends Component {
   constructor(props) {
     super(props);
@@ -82,5 +85,5 @@ class Dropdown extends Component {
     );
   }
 }
-
+*/}
 export default Utilities;
