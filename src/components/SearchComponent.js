@@ -12,24 +12,21 @@ class SearchComponent extends Component {
 
   render() {
 
-// TODO - donn't send if empty
-// THIS IS HOW YOU REDIRECT - could also send state
-  
-
   const handleChange = (e) => {
     const query = this.refs.search.value.trim();
 
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && query !== "") {
       this.redirect(query);
+      this.props.search(query);
     };
   }
-
+  
   return ( 
     <div className="search-container">
       <input ref="search" 
              type="search" 
              placeholder="Search Comics"
-
+             
              onKeyDown={handleChange} />
     </div>)
   }

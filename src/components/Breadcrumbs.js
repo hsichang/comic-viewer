@@ -31,7 +31,6 @@ class Breadcrumbs extends Component {
 
     const arr = range(start(index, lastId), 5);
 
-    console.log(previous)
     return(
       <div className="breadcrumbs-container">
         {parseInt(index, 10) > 1 &&

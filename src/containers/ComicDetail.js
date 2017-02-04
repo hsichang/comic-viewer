@@ -121,9 +121,3 @@ class ComicDetail extends Component {
 }
 
 export default ComicDetail;
-
-
-/*
-
-data.
-*/
