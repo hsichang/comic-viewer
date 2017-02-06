@@ -4,49 +4,54 @@ import SearchComponent from '../components/SearchComponent';
 import Masthead from "../components/Masthead";
 import Breadcrumbs from "../components/Breadcrumbs";
 import SearchResults from "../components/SearchResults";
-import { getComicListByPage } from '../api/comic-api.js';
+import { getComicListByGenreAndPage } from '../api/comic-api.js';
 import { connect } from 'react-redux';
 import Genres from '../data/genres.json';
+import Subheader from '../components/Subheader';
 
-class ListAllComics extends Component {
+class ListAllComicsByGenre extends Component {
   componentWillMount() {
+    const name = this.props.params.name;
     const page = this.props.params.page || 1;
-    getComicListByPage(page);
+    getComicListByGenreAndPage(name, page);
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.params.page !== this.props.params.page) {
-      const page = nextProps.params.page;
-      getComicListByPage(page);
+    if (nextProps.params.page !== this.props.params.page) {
+      const name = nextProps.params.name;
+      const page = nextProps.params.page || 1;
+      getComicListByGenreAndPage(name, page);
     }
   }
 
-  redirect(genre) {
+  redirectByGenre(genre) {
     browserHistory.push({
       pathname: '/Comics/genres/' + genre +'/1'
     });
   }
 
-
-
   render() {
     const { next, previous, last, items } = this.props;
-    const genres = Genres.genres;
-    
+    const { genres }  = Genres;
+
     return (
       <div className="list-all-comics-container">
         <header>
           <Masthead />
           <SearchComponent />
         </header>
+        <Subheader />
 
-        <Breadcrumbs next={next}
-                     previous={previous}
-                     index={this.props.params.page || 0}
-                     last={last} />
+        <Breadcrumbs {...this.props}
+                     index={this.props.params.page || 1} />
 
         <div className="main-container">
-          <SearchResults items={items} />
+          <div className="flex-column-container">
+            <div className="search-by-container">
+              Genre: {this.props.params.name}
+            </div>
+            <SearchResults items={items} />
+          </div>
 
         {/* TODO: break this out into a component */}
           <div className="sidebar-container">
@@ -56,7 +61,7 @@ class ListAllComics extends Component {
             <div className="body">
               {genres.map( (genre, index) => (
                 <div key={index} className="genre-link">
-                  <a href="#" onClick={() => this.redirect(genre)}>
+                  <a href="#" onClick={() => this.redirectByGenre(genre)}>
                     {genre}
                   </a>
                 </div>
@@ -65,10 +70,9 @@ class ListAllComics extends Component {
           </div>
         </div>
 
-        <Breadcrumbs next={next}
-                     previous={previous}
-                     index={this.props.params.page || 0}
-                     last={last} />
+        <Breadcrumbs {...this.props}
+                     index={this.props.params.page || 1} />
+
       </div>
     )
   }
@@ -79,8 +83,9 @@ const mapStateToProps = (store) => {
     items: store.comicReducer.items,
     next: store.comicReducer.next,
     previous: store.comicReducer.previous,
-    last: store.comicReducer.last
+    last: store.comicReducer.last,
+    searchByGenre: store.comicReducer.searchByGenre
   }
 }
 
-export default connect(mapStateToProps)(ListAllComics);
+export default connect(mapStateToProps)(ListAllComicsByGenre);

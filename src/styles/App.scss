@@ -51,78 +51,102 @@ body {
 a { 
   text-decoration: none;
 }
-// input[type=search] {
-//   -webkit-appearance: none;
-//   height: 60px;
-//   font-size: 20px;
-//   border: 1px solid $grey;
-//   border-radius: 5px;
-//   padding: 0 15px;
 
-//   @media screen and (max-width: $small) {
-    
-
-
-//   }
-// }
+.flex-column-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
 // TODO break this out
-  .search-results-component {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding: 5px 20px 0 20px;
+.main-container {
+  display: flex;
+  background-color: $grey;
+
+  .search-by-container {
+    background-color: $brown;
+    color: $white;
+    padding: 10px 15px;
+  }
+
+  .sidebar-container {
     background-color: $grey;
 
+    .header {
+      flex: 1 1 auto;
+      background-color: $brown;
+      color: $white;
+      padding: 10px;
+    }
 
-    .search-result-card {
-      background-color: white;
-      margin: 0 0 8px; // something wrong here - it shouldn't expand it's container
-      padding: 10px 5px 0px 5px;
-      width: 100%;
+    .body {
+      padding: 5px 10px;
+      background-color: $white;
+      margin-top: 5px;
+    }
 
-      .search-result-card-header {
-        font-size: 14px;
-        font-weight: 800;
+    .genre-link {
+      margin-bottom: 5px;
 
-        .title {
-          padding: 0 5px;
-        }
-
-        a {
-        text-decoration: none;
+      a {
         color: $brown;
+      }
+    }
+  } 
+}
+.search-results-component {
+  flex: 2 1 auto;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 20px 0 20px;
+  background-color: $grey;
 
-          &:active {
-            color: $tan;
-          }
 
-          &:visited {
-            color: $brown;
-          } 
-        }
+  .search-result-card {
+    background-color: white;
+    margin: 0 0 8px; // something wrong here - it shouldn't expand it's container
+    padding: 10px 5px 0px 5px;
+    width: 100%;
+
+    .search-result-card-header {
+      font-size: 14px;
+      font-weight: 800;
+
+      .title {
+        padding: 0 5px;
       }
 
-      hr {
-        margin: 5px 0 0 0;
-      }
-      
-      section {
-        padding: 5px 5px 10px 5px;
-        font-size: 12px;
+      a {
+      text-decoration: none;
+      color: $brown;
 
-        .status {
-          font-weight: 800;
+        &:active {
+          color: $tan;
         }
+
+        &:visited {
+          color: $brown;
+        } 
+      }
+    }
+
+    hr {
+      margin: 5px 0 0 0;
+    }
+    
+    section {
+      padding: 5px 5px 10px 5px;
+      font-size: 12px;
+
+      .status {
+        font-weight: 800;
       }
     }
   }
+}
 
-// TODO: this is a hack because it repeats somewhere else.
-.search-results-component {
-  background-color: $grey;
-} 
 
 // Break this out
 

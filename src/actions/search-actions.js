@@ -6,3 +6,31 @@ export function getComicSearchSuccess(items) {
     items
   };
 } 
+
+export function getComicDetailsSuccess(response) {
+  return {
+    type: types.GET_COMIC_DETAILS_SUCCESS,
+    response
+  };
+}
+
+export function getComicIssueSuccess(pages) {
+  return {
+    type: types.GET_COMIC_ISSUE_SUCCESS,
+    pages
+  };
+}
+
+export function getComicListByPageSuccess(response) {
+  return {
+    type: types.GET_COMIC_LIST_BY_PAGE_SUCCESS,
+    response
+  };
+}
+
+export function getComicListByGenreSuccess(response) {
+  return {
+    type: types.GET_COMIC_LIST_BY_GENRE_SUCCESS,
+    response
+  };  
+}

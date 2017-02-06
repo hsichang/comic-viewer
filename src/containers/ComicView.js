@@ -5,11 +5,8 @@ import ShowAllPages from '../components/ShowAllPages';
 import { browserHistory } from 'react-router';
 import Masthead from '../components/Masthead';
 import Utilities from '../components/Utilities';
-
-// TODO: 
-// Add pages in the route
-// X - Add a default to page 0
-// 
+import { getComicPages } from '../api/comic-api.js';
+import { connect } from 'react-redux';
 
 class ComicView extends Component {
   constructor() {
@@ -22,13 +19,11 @@ class ComicView extends Component {
   }
   
   componentWillMount () {
-    const id = this.props.params.id;
-    const issue = this.props.params.issue;
-
-    fetch("http://localhost:4000/comics-api/comic/" + id + "/" + issue)
-      .then(response => response.json())
-      .then((response) => this.setState({pages: response.data.attributes.pages}))    
-  
+    const { id, issue } = this.props.params;
+    getComicPages(id, issue);
+      
+    // NOT using this yet -- this is for the menu to
+    // change issues
     fetch("http://localhost:4000/comics-api/comic/" + id)
       .then(response => response.json())
       .then((response) => this.setState({included: response.included}))
@@ -85,13 +80,13 @@ class ComicView extends Component {
           {this.state.allPages ?
             <ShowAllPages name={this.props.params.id}
                           issue={this.props.params.issue}
-                          pages={this.state.pages} />
+                          pages={this.props.pages} />
 
             :
             <ShowSinglePage name={this.props.params.id}
                             issue={this.props.params.issue}
                             current_page={current_page} 
-                            src={this.state.pages[current_page]}/>}
+                            src={this.props.pages[current_page]}/>}
         </main>
 
 
@@ -114,9 +109,12 @@ class ComicView extends Component {
   }
 }
 
+const mapStateToProps = function(store) {
+  return {
+    pages: store.comicReducer.pages,
+    allPages: store.comicReducer.allPages
+  }
+}
 
 
-
-
-
-export default ComicView;
+export default connect(mapStateToProps)(ComicView);

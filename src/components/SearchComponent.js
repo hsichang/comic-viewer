@@ -12,23 +12,23 @@ class SearchComponent extends Component {
 
   render() {
 
-  const handleChange = (e) => {
-    const query = this.refs.search.value.trim();
+    const handleChange = (e) => {
+      const query = this.refs.search.value.trim();
 
-    if (e.key === 'Enter' && query !== "") {
-      this.redirect(query);
-      this.props.search(query);
-    };
-  }
-  
-  return ( 
-    <div className="search-container">
-      <input ref="search" 
-             type="search" 
-             placeholder="Search Comics"
-             
-             onKeyDown={handleChange} />
-    </div>)
+      if (e.key === 'Enter' && query !== "") {
+        this.redirect(query);
+        this.props.search(query);
+      };
+    }
+    return ( 
+      <div className="search-container">
+        <input ref="search" 
+               type="search" 
+               placeholder="Search Comics"
+               
+               onKeyDown={handleChange} />
+      </div>
+    )
   }
 
 }

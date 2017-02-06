@@ -51,7 +51,7 @@ class Utilities extends Component {
   }
 }
 
-{/* 
+/* 
 class Dropdown extends Component {
   constructor(props) {
     super(props);
@@ -85,5 +85,5 @@ class Dropdown extends Component {
     );
   }
 }
-*/}
+*/
 export default Utilities;

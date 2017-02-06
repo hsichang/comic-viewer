@@ -3,7 +3,6 @@ import SearchComponent from '../components/SearchComponent';
 import Masthead from '../components/Masthead';
 import { searchComics } from '../api/comic-api.js';
 import { connect } from 'react-redux';
-import { getComicSearchSuccess } from '../actions/search-actions';
 import SearchResults from '../components/SearchResults';
 import Subheader from '../components/Subheader';
 
@@ -14,7 +13,7 @@ class SearchResultsContainer extends Component {
   }
 
   search(query) {
-    searchComics(query)
+    searchComics(query);
   }
 
   render() {
@@ -22,7 +21,7 @@ class SearchResultsContainer extends Component {
       <div className="search-results-container">
         <header>
           <Masthead />
-          <SearchComponent search={this.search}/>
+          <SearchComponent {...this.props} search={this.search}/>
         </header>
         <Subheader />
         <SearchResults {...this.props} />
