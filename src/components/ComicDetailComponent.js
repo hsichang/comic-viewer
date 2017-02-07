@@ -7,7 +7,6 @@ class ComicDetailComponent extends Component {
   render() {
     const { attrs, relationships } = this.props;
     const { genres, publisher, writer, artist } = relationships;
-console.log(this.props)
     return (
       <main>
         <div className="title">

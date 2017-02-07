@@ -249,6 +249,29 @@ header {
 
   .search-container {
 
+    .autocomplete-container {
+      color: $black;
+      background-color: $white;
+      position: absolute; 
+      left: 123px;
+      top: 37px;
+      width: 330px;
+      padding: 10px;
+      z-index: 10;
+      border: 2px solid $grey;
+      overflow-y: scroll;
+      max-height: 300px;
+
+      .autocomplete-result {
+        font-size: 14px;
+        margin-bottom: 5px;
+      
+        a {
+          color: $brown;
+        }
+      }
+    }
+
     @media screen and (min-width: $medium) {
       width: 350px;
       display: flex;
@@ -286,6 +309,7 @@ header {
     flex-direction: column;
     // font-family: $raleway;
     font-weight: 400;
+    width: 100%;
 
 
     @media screen and (max-width: $small) {
@@ -294,6 +318,10 @@ header {
 
     @media screen and (min-width: $medium) {
       padding: 20px;
+    }
+
+    .comic-image {
+      width: 100%;
     }
 
     .title {
@@ -399,7 +427,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
+  align-content: flex-start;
   height: 100%;
 
   @media screen and (min-width: $medium) {
@@ -414,6 +442,11 @@ header {
 
   main {
     display: flex;
+    width: 100%;
+
+    .comic-image {
+      width: 100%;
+    }
 
     .page-image {
       width: 50%;

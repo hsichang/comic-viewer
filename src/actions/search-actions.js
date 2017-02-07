@@ -34,3 +34,16 @@ export function getComicListByGenreSuccess(response) {
     response
   };  
 }
+
+export function getAutocompleteComicList(response) {
+  return {
+    type: types.GET_AUTOCOMPLETE_COMIC_LIST,
+    response
+  }
+}
+
+export function clearAutocompleteList() {
+  return {
+    type: types.CLEAR_AUTOCOMPLETE
+  }
+}

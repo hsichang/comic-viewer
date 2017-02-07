@@ -31,7 +31,7 @@ class ListAllComicsByGenre extends Component {
   }
 
   render() {
-    const { next, previous, last, items } = this.props;
+    const { items } = this.props;
     const { genres }  = Genres;
 
     return (

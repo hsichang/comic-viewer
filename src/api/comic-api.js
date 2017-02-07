@@ -3,12 +3,8 @@ import { getComicSearchSuccess,
          getComicDetailsSuccess,
          getComicIssueSuccess,
          getComicListByPageSuccess,
-         getComicListByGenreSuccess } from '../actions/search-actions';
-
-export function getComics() {
-  return true;
-}
-
+         getComicListByGenreSuccess,
+         getAutocompleteComicList } from '../actions/search-actions';
 
 // Get comic details
 
@@ -62,4 +58,14 @@ export function getComicListByGenreAndPage(genre, page) {
             store.dispatch(getComicListByGenreSuccess(response));
             return response;
           })
+}
+
+// get comics from autocomplete 
+export function getAutocompleteComics(query) {
+  return fetch("http://localhost:4000/comics-api/comics/search/" + query)
+        .then(response => response.json())
+        .then(response => {
+          store.dispatch(getAutocompleteComicList(response.data));
+          return response.data;
+        })
 }

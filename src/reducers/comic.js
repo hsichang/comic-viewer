@@ -13,7 +13,8 @@ const initialState = {
   next: "",
   previous: "",
   last: "",
-  searchByGenre: false
+  searchByGenre: false,
+  autocompleteResults: [],
 }
 
 const comicReducer = (state = initialState, action) => {
@@ -23,22 +24,26 @@ const comicReducer = (state = initialState, action) => {
                                         cover: action.response.data.links.cover,
                                         attributes: action.response.data.attributes,
                                         included: action.response.included,
-                                        relationships: action.response.data.relationships })
+                                        relationships: action.response.data.relationships });
     case types.GET_COMIC_SEARCH_SUCCESS:
-      return Object.assign({}, state, { items: action.items })
+      return Object.assign({}, state, { items: action.items });
     case types.GET_COMIC_ISSUE_SUCCESS:
-      return Object.assign({}, state, { pages: action.pages })
+      return Object.assign({}, state, { pages: action.pages });
     case types.GET_COMIC_LIST_BY_PAGE_SUCCESS:
       return Object.assign({}, state, { items: action.response.data,
                                         next: action.response.links.next,
                                         previous: action.response.links.previous,
-                                        last: action.response.links.last })
+                                        last: action.response.links.last });
     case types.GET_COMIC_LIST_BY_GENRE_SUCCESS:
       return Object.assign({}, state, { items: action.response.data,
                                         next: action.response.links.next,
                                         previous: action.response.links.previous,
                                         last: action.response.links.last,
-                                        searchByGenre: true })
+                                        searchByGenre: true });
+    case types.GET_AUTOCOMPLETE_COMIC_LIST:
+      return Object.assign({}, state, { autocompleteResults: action.response});
+    case types.CLEAR_AUTOCOMPLETE:
+      return Object.assign({}, state, { autocompleteResults: []});
     default:
       return state;
   }

@@ -5,9 +5,12 @@ import { connect } from 'react-redux';
 import { getComicDetails } from '../api/comic-api.js';
 import ComicDetailComponent from '../components/ComicDetailComponent';
 import DetailIssueListComponent from '../components/DetailIssueListComponent';
+import { clearAutocompleteList } from '../actions/search-actions';
+import store from '../store';
 
 class ComicDetail extends Component {
   componentWillMount() {
+    store.dispatch(clearAutocompleteList());
     const id = this.props.params.id;
     getComicDetails(id);
   }

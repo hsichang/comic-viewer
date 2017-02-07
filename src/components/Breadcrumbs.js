@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 class Breadcrumbs extends Component {
   render() {
-    const { next, previous, last, index, searchByGenre } = this.props;
+    const { next, previous, index, searchByGenre } = this.props;
 
     const parsePage = (url) => {
       if (url) {
